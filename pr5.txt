@@ -1,0 +1,23 @@
+# mongodb-database-tools
+> mongoimport --db person --collection users --file "E:/MCS CS-1/Practicals/NoSQL/data/users.json" --jsonArray
+
+> mongoimport --type csv --headerline --db person --collection customers --file "E:/MCS CS-1/Practicals/NoSQL/data/customers.csv" 
+    --uri "mongodb://localhost:27017/"
+
+
+mongosh shell
+> show dbs;
+> use person; 
+> show collections;
+
+> db.users.find();
+> db.users.find({},{"age":1, "email":1, "name":1})
+> db.users.find({},{"age":1, "email":1, "name":1,_id:0})
+> db.users.find({},{"age":1, "email":1, "name":1, "address.zipcode":1, _id:0})
+
+> db.users.find({"age":25});
+> db.users.find({"age":25}).limit(5);
+
+> db.users.find({"age":25}).skip(1).limit(2);
+> db.users.find({age:{$gt:20}});
+> db.users.find({age:{$gt:22,$lt:30}});

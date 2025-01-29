@@ -1,0 +1,19 @@
+> mongosh
+> show dbs;
+> use mydb;
+> db.createCollection('books');
+> show collections;
+
+> db.books.insert({"title":"NoSQL","page":150});
+> db.books.insertMany([{"title":"DIP","page":225},{"title":"SDN","page":355}]);
+
+> db.books.find().pretty();
+> db.books.find({"page":{$lt:200}},{"title":1,"page":1});
+> db.books.find({},{"title":1,"_id":0});
+
+> db.books.updateOne({"title":"DIP"},{$set:{"title":"ASIP"}});
+> db.books.updateMany({"title":"NoSQL"},{$set:{"title":"NoSQL Tech"}});
+
+> db.books.deleteOne({"title":"SDN"});
+> db.books.drop();
+> db.dropDatabase();

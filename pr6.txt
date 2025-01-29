@@ -1,0 +1,28 @@
+# mongodb-database-tools
+> mongoimport --db person --collection users --file "E:/MCS CS-1/Practicals/NoSQL/data/users.json" --jsonArray
+
+> mongoimport --type csv --headerline --db person --collection customers --file "E:/MCS CS-1/Practicals/NoSQL/data/customers.csv" 
+    --uri "mongodb://localhost:27017/"
+
+
+mongosh shell
+> show dbs;
+> use person; 
+> show collections;
+> db.customers.find()
+
+> db.customers.find().explain()
+> db.customers.find().explain("allPlansExecution")
+> db.customers.find().pretty()
+> db.customers.find({"user_id":20})
+> db.customers.find({"city":"Dallas"})
+> db.customers.find({},{'signup_date':1,'name':1,'email':1})
+> db.customers.find({"city":"Dallas"}).explain("allPlansExecution")
+
+> db.customers.ensureIndex({"city":1});
+> db.customers.find({"city":"Dallas"}).explain("allPlansExecution")
+> db.customers.find({},{'signup_date':1,'name':1,'email':1}).explain("allPlansExecution")
+> db.customers.getIndexes()
+> db.customers.dropIndex({'city':1})
+> db.customers.dropIndexes();
+> db.customers.getIndexes()

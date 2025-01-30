@@ -1,0 +1,192 @@
+SETUP:-
+
+wsl --install
+
+sudo apt update
+sudo apt install redis-server -y
+
+sudo service redis-server start
+
+sudo systemctl enable redis
+sudo systemctl start redis
+
+redis-cli ping
+
+redis-server --version
+redis-cli
+
+
+COMMAND:-
+===================================================================================================
+String Data type in Redis
+
+>
+    SET example redis
+    GET example
+
+    SET mykey "This is test key"
+    GETRANGE mykey 0 3
+
+
+===================================================================================================
+Hash Data type in Redis
+
+>
+    HMSET langhash lang1 "PHP" lang2 "Java" lang3 "Python"
+    HGET langhash lang1
+    HGET langhash lang2
+    HGET langhash lang3
+
+    HDEL langhash lang1
+    HGET langhash lang1
+
+>
+    HDEL langhash lang1 lang2 lang3
+    HGET langhash lang1
+
+> 
+    HMSET langhash lang1 "PHP" lang2 "Java" lang3 "Python"
+    HEXISTS langhash lang1
+    HEXISTS langhash lang4
+
+> 
+    HMSET langhash lang1 "PHP" lang2 "Java" lang3 "Python"
+    HMSET langhash lang4 "Go-lang"
+
+    HGETALL langhash
+
+>
+    HMSET user email example@gmial.com 
+    HMSET user lang English
+    HMSET user gender Female
+
+    HGETALL user
+
+>
+    HSET subjects p1 "ASIP"
+    HSET subjects p2 "SDN"
+    HSET subjects p3 "NoSQL"
+    HSET subjects p4 "RM"
+
+    HKEYS subjects
+
+
+===================================================================================================
+List Data type in Redis
+
+> 
+    LPUSH mycolor1 white black
+    LRANGE mycolor1 0 -1
+
+    LPUSH mycolor1 blue red 
+    LRANGE mycolor1 0 -1
+
+>
+    LPUSH mycolor1 white black blue red
+    LRANGE mycolor1 0 -1
+
+    LPOP mycolor1
+    LRANGE mycolor1 0 -1
+
+    RPOP mycolor1
+
+>
+    RPUSH mycolor white black
+    RPUSH mycolor red blue
+    LRANGE mycolor 0 -1
+
+> 
+    LPUSH mycolor2 white black red blue
+    LRANGE mycolor2 0 -1
+
+    RPOP mycolor2
+    LRANGE mycolor2
+    LPOP mycolor2
+
+> 
+    LPUSH mycolor1 white black red blue
+    LRANGE mycolor1 0 -1
+    LRANGE mycolor1 0 1
+
+    LRANGE mycolor1 2 -1
+
+>
+    LRANGE mycolor1 -2 -1
+    LRANGE mycolor1 -4 -3
+    LRANGE mycolor1 0 -3
+
+
+===================================================================================================
+Set Data type in Redis
+
+> 
+    SADD mycolor "White"
+    SADD mycolor "Yellow" "Green"
+    SADD mycolor "Red" "Blue" "Orange"
+
+    SMEMBERS mycolor
+
+>
+    SADD mycolor "Red" "Green"
+    SADD mycolor "Blue" "Yellow"
+
+    SCARD mycolor
+
+> 
+    SADD mycolor1 R G B 
+    SADD mycolor2 G Y 
+
+    SDIFF mycolor1 mycolor2
+
+    SADD mycolor3 B P 
+    SDIFF mycolor1 mycolor2 mycolor3
+
+>
+    SADD mycolor "red" "green" "blue"
+
+    SISMEMBER mycolor "green"
+    SISMEMBER mycolor "orange"
+
+>
+    SADD mycolor7 "red" "green" "blue"
+    SADD mycolor7 "orange" "yellow"
+
+    SMEMBERS mycolor7
+
+> 
+    SADD mycolor8 "red" "green" "blue"
+    SPOP mycolor8
+
+    SMEMBERS mycolor8
+    SPOP mycolor8
+    SMEMBERS mycolor8
+
+>
+    SADD mycolor90 R G B 
+    SADD mycolor91 G B Y 
+
+    SINTER mycolor90 mycolor91
+
+
+===================================================================================================
+Sorted Set in Redis
+
+> 
+    ZADD mycolorset 1 white
+    ZADD mycolorset 2 blue
+    ZADD mycolorset 3 black
+
+    ZRANGE mycolorset 0 -1
+    ZRANGE mycolorset 0 -1 WITHSCORES
+
+>
+    ZADD mycolorset1 10 white 12 black 14 blue
+    ZADD mycolorset1 18 green 20 orange 22 pink 24 yellow
+
+    ZCARD mycolorset1
+
+> 
+    ZADD mycity 1 Delhi 2 London 3 Paris 4 Tokyo 5 NewYour 6 Seoul
+    ZRANGE mycity 0 -1
+
+    ZRANGE mycity 0 -1 WITHSCORES

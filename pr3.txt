@@ -1,0 +1,73 @@
+hbase shell
+
+Version
+Table_help
+
+Status
+    summary
+    simple 
+    detailed
+
+Whoami
+
+------------------------------------------------------
+Tables-Managements-commands
+    Create, List, Describe, Describe_all, Enable, Enable_all
+    Drop, Drop_all, Show_filters, Alter, Alter_status
+
+create <Table name>, <colomun family name>
+create 'msc' 'students'
+
+list
+describe <Table name>
+describe 'msc'
+
+disable <Table name>
+disable 'msc'
+describe 'msc'
+
+disable_all <'matching regex'>
+enable <Table name>
+enable 'msc'
+
+Show_filters
+
+drop <Table name>
+drop 'msc'
+list
+
+drop_all <'regex'>
+
+alter <Table name>, NAME=> <colomun family name>, VERSIONS=>5
+alter 'msc', {NAME => 'teachers'}
+
+
+------------------------------------------------------
+Data-manupulation-commands
+    Count, Put, Get, Delete, Delete_all,
+    Truncate, Scan
+
+
+count <Table  name>, CAVHE => 1000
+count 'msc'
+
+Put <Table name>, <rowname>, <colomun value>, <value>
+put 'msc', 1, 'students:name', 'ramu'
+put 'msc', 1, 'students:roll', '07'
+
+put 'msc', 1, 'teachers:name', 'Mr. RK Sharma'
+scan 'msc'
+
+get 'msc','1'
+get 'msc','1', 'teachers'
+
+get 'msc','1', 'students'
+
+Delete <Table name>, <row name>, <colomun name>
+delete 'msc',1,"students:roll"
+
+deleteall <Table name>, <row name>
+put 'msc',1,'teachers.name>
+
+delete 'msc', 'studentsip 192.168.1.1.
+
